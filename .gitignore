@@ -1,4 +1,4 @@
-.pyc
+*.pyc
 csv
 .DS_STORE
 reports
