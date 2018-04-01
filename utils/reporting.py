@@ -11,7 +11,7 @@ def report_asset_movement(asset_movement_list, file_name):
     for line in asset_movement_list:
         asset_movement_wr.writerow([line["timestamp"], line["asset"], line["amount"], line["value"], line["price_per_unit"], line["exchange"]])
 
-def report_asset_FIFO(fifo_result, file_name):
+def report_asset_cost_basis(close_basis_result, file_name):
     asset_trades = open(BASE_REPORT_DIR + file_name, 'w')
     asset_trades_wr = csv.writer(asset_trades, quoting=csv.QUOTE_ALL)
     asset_trades_wr.writerow(["Buy Date", "Sell Date", "Asset", "Amount", "Cost Basis", "Sell Value", "Taxable Amount"])
@@ -19,7 +19,7 @@ def report_asset_FIFO(fifo_result, file_name):
     total_cb = 0
     total_sv = 0
     total_tx = 0
-    for trade in fifo_result:
+    for trade in close_basis_result:
         total_amt += trade["amount"]
         total_cb += trade["cost_basis"]
         total_sv += trade["sell_value"]
